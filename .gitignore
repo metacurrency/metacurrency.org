@@ -5,7 +5,8 @@ _site/
 .claude/
 CLAUDE.md
 
-# Source material kept locally, not committed
+# Source material + extraction script kept locally, not committed
 manual/
 old_site/
 migration/
+scripts/

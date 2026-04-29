@@ -4,13 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "extract": "node scripts/extract.js",
     "dev": "eleventy --serve --quiet",
     "build": "eleventy",
     "clean": "rm -rf _site"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "cheerio": "^1.0.0"
+    "@11ty/eleventy": "^3.0.0"
   }
 }
