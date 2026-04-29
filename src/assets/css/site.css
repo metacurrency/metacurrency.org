@@ -1,0 +1,363 @@
+/* Site-specific styles layered on top of the X Theme base (theme.css). */
+
+/* --- Colors / type, matched to the original site's theme options --------
+   Source: inline <style> block on the saved Wayback HTML.
+   - body color black, links #7c9363 green, hover #4d6a77 slate
+   - body font Helvetica Neue stack, 18px / 1.6
+   - all heading colors black */
+
+:root {
+  --mc-bg: #fff;
+  --mc-fg: #000;
+  --mc-link: #7c9363;
+  --mc-link-hover: #4d6a77;
+  --mc-muted: #707070;
+  --mc-border: #e6e6e6;
+  --mc-dark-bg: #102026;
+}
+
+html, body {
+  background: var(--mc-bg);
+  color: var(--mc-fg);
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--mc-link);
+  text-decoration: none;
+}
+a:hover { color: var(--mc-link-hover); }
+
+h1, h2, h3, h4, h5, h6,
+.h-custom-headline, .h-prompt {
+  color: #000;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* --- FontAwesome (X Theme bundled, fetched from Wayback) ----------------- */
+
+@font-face {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("/assets/fonts/fa-solid-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "FontAwesomeRegular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/assets/fonts/fa-regular-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "FontAwesomeLight";
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url("/assets/fonts/fa-light-300.woff2") format("woff2");
+}
+@font-face {
+  font-family: "FontAwesomeBrands";
+  font-style: normal;
+  font-weight: normal;
+  font-display: block;
+  src: url("/assets/fonts/fa-brands-400.woff2") format("woff2");
+}
+
+/* The X Theme renders icons by binding the glyph to a data attribute and
+   using `content: attr(...)` in :before. The attribute values are baked
+   into the saved HTML. */
+[data-x-icon],
+[data-x-icon-s],
+[data-x-icon-o],
+[data-x-icon-l],
+[data-x-icon-b] {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+}
+[data-x-icon],
+[data-x-icon-s] {
+  font-family: "FontAwesome" !important;
+  font-weight: 900;
+}
+[data-x-icon-o] { font-family: "FontAwesomeRegular" !important; }
+[data-x-icon-l] { font-family: "FontAwesomeLight" !important; font-weight: 300; }
+[data-x-icon-b] { font-family: "FontAwesomeBrands" !important; }
+
+[data-x-icon]:before   { content: attr(data-x-icon); }
+[data-x-icon-s]:before { content: attr(data-x-icon-s); }
+[data-x-icon-o]:before { content: attr(data-x-icon-o); }
+[data-x-icon-l]:before { content: attr(data-x-icon-l); }
+[data-x-icon-b]:before { content: attr(data-x-icon-b); }
+
+/* --- Site header / nav --------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--mc-border);
+}
+
+.site-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.site-brand img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+.site-nav { margin-left: auto; }
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: #000;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--mc-link);
+}
+
+/* --- Site footer --------------------------------------------------------- */
+
+.site-footer {
+  margin-top: 60px;
+  padding: 40px 24px;
+  background: #f7f7f7;
+  border-top: 1px solid var(--mc-border);
+  color: var(--mc-muted);
+}
+
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-footer a { color: var(--mc-muted); }
+.site-footer a:hover { color: #000; }
+
+/* --- Page body ----------------------------------------------------------- */
+
+main { display: block; }
+
+/* The site header is sticky at ~76px. Without scroll-margin, anchor jumps
+   land behind the header. Apply to anything that can be a jump target. */
+:where([id]) { scroll-margin-top: 96px; }
+html { scroll-behavior: smooth; }
+
+.cs-content img { max-width: 100%; height: auto; }
+.cs-content p { margin: 0 0 1em; }
+
+/* The Cornerstone-rendered HTML uses `.x-container.max.width` as its wrapper
+   for centering content. Without the X Theme's full layout JS those classes
+   only set max-width — so on wide screens the content can flush to the edge.
+   Constrain the actual width and add side padding so hero text and any
+   sections without explicit padding still sit inside readable margins. */
+.cs-content .x-container,
+.cs-content .x-section > .x-container {
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 5vw, 60px);
+  padding-right: clamp(20px, 5vw, 60px);
+  box-sizing: border-box;
+}
+
+/* Sections themselves can keep their full-bleed background images, but
+   ensure inline `style="padding: 0px"` doesn't strip horizontal breathing
+   room from their inner containers on smaller screens. */
+.cs-content .x-section {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Hero / dark-section overrides where text needs to be light.
+   Heading color rules above are higher-specificity, so re-state them inside
+   dark sections to win. */
+.cs-content .dark-section,
+.cs-content [class*="dark-section"] { color: #fff; }
+.cs-content .dark-section h1, .cs-content .dark-section h2,
+.cs-content .dark-section h3, .cs-content .dark-section h4,
+.cs-content .dark-section h5, .cs-content .dark-section h6,
+.cs-content .dark-section .h-custom-headline,
+.cs-content .dark-section .h-prompt,
+.cs-content .dark-section .x-feature-box-title,
+.cs-content .dark-section .x-feature-box-title a,
+.cs-content .dark-section .x-feature-box-text,
+.cs-content .dark-section .x-feature-box-text a {
+  color: #fff;
+}
+.cs-content .dark-section a { color: #fff; }
+.cs-content .dark-section a:hover { color: var(--mc-link); }
+
+/* --- Buttons (X Theme), matched to original site palette ----------------
+   Original .x-btn used a green (#6a774d), light-grey text, deep shadow.
+   Hover went very dark (#141516). theme.css defaults to red, so override. */
+.cs-content .x-btn,
+.cs-content .button,
+.cs-content [type="submit"] {
+  color: #c8c8c8 !important;
+  border-color: #6a774d !important;
+  background-color: #6a774d !important;
+  text-shadow: 0 0.075em 0.075em rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 0.25em 0 0 hsla(210, 5%, 8%, 0.06),
+    0 4px 9px rgba(0, 0, 0, 0.75);
+}
+.cs-content .x-btn:hover,
+.cs-content .button:hover,
+.cs-content [type="submit"]:hover {
+  color: #c8c8c8 !important;
+  border-color: #141516 !important;
+  background-color: #141516 !important;
+  box-shadow:
+    0 0.25em 0 0 #000000,
+    0 4px 9px rgba(0, 0, 0, 0.75);
+}
+.cs-content .x-btn.x-btn-transparent,
+.cs-content .x-btn.x-btn-transparent:hover {
+  border-width: 3px !important;
+  text-shadow: none;
+  text-transform: uppercase;
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+/* Iframes embedded in pages should be responsive. */
+.cs-content .x-video iframe,
+.cs-content .x-video embed,
+.cs-content .x-video object {
+  max-width: 100%;
+}
+
+/* Social icon row on contact page. */
+.cs-content .x-raw-content a img,
+.cs-content .x-raw-content a svg { width: 48px; height: 48px; margin: 8px; }
+
+/* Prevent X Theme from hiding our content if its JS doesn't run. */
+.x-section, .x-container, .x-column { opacity: 1 !important; }
+
+/* --- Project grid (Home page) ----------------------------------------- */
+
+.mc-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px 24px;
+  max-width: 1200px;
+  margin: 30px auto !important;
+  padding: 0 clamp(20px, 5vw, 60px);
+  box-sizing: border-box;
+  align-items: start;
+  justify-items: center;
+}
+
+.mc-project-grid .mc-project-card {
+  width: 100% !important;
+  max-width: 280px;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.mc-project-grid .x-feature-box {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* --- Contact page ---------------------------------------------------------- */
+
+.mc-lead {
+  font-size: 1.2em;
+  max-width: 720px;
+  margin: 0;
+}
+
+.mc-social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.mc-social a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--mc-border);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--mc-fg);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.mc-social a:hover {
+  border-color: var(--mc-link);
+  color: var(--mc-link);
+  transform: translateY(-2px);
+}
+.mc-social img,
+.mc-social svg {
+  width: 56px;
+  height: 56px;
+  margin: 0;
+}
+.mc-social span {
+  font-weight: 600;
+  font-size: 0.95rem;
+}

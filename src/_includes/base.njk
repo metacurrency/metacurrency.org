@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} — {% endif %}{{ site.title }}</title>
+  {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ title or site.title }}">
+  {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body class="x-ethos">
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="/">
+        <img src="/assets/images/BlackMetaCurrency_Logo-01.png" alt="{{ site.title }}">
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          {% for item in site.nav %}
+            <li>
+              <a href="{{ item.href }}"
+                 {%- if item.external %} target="_blank" rel="noopener"{% endif %}
+                 {%- if page.url == item.href %} aria-current="page"{% endif %}>
+                {{ item.text }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>&copy; {{ build.year }} {{ site.title }}</div>
+      <ul>
+        {% for item in site.nav %}
+          <li>
+            <a href="{{ item.href }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}>{{ item.text }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

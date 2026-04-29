@@ -1,0 +1,11 @@
+node_modules/
+_site/
+.cache/
+.DS_Store
+.claude/
+CLAUDE.md
+
+# Source material kept locally, not committed
+manual/
+old_site/
+migration/

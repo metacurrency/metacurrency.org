@@ -1,0 +1,34 @@
+# Cloudflare Pages redirects.
+# Format: <source> <destination> [status]   (default 302; we want 301)
+
+# --- Pages no longer hosted ----------------------------------------------
+/faqs/                                                 /faq/                                301
+/404-page-not-found-checking-our-archived-site/        /                                    301
+/case-studies-3/                                       /                                    301
+/news-4/                                               https://medium.com/metacurrency-project  301
+/dimensions-of-incentives-in-currency-design/          /                                    301
+/targeted-currencies-network-vision/                   /                                    301
+
+# --- Deep Wealth → Medium blog -------------------------------------------
+/deep_wealth                                           https://medium.com/metacurrency-project  301
+/deep_wealth/                                          https://medium.com/metacurrency-project  301
+
+# --- Old blog posts → Medium ---------------------------------------------
+/2015/04/13/mit-kitwebinar/                            https://medium.com/metacurrency-project  301
+/2016/04/12/art-brock-beyondblockchain/                https://medium.com/metacurrency-project  301
+
+# --- Portfolio items: collapse all to home -------------------------------
+/portfolio-item/*                                      /                                    301
+/portfolio/*                                           /                                    301
+
+# --- Individual FAQ permalinks now live inline on /faq/ ------------------
+/faq/:slug                                             /faq/                                301
+/faq/:slug/                                            /faq/                                301
+
+# --- WordPress plumbing ---------------------------------------------------
+/wp-admin/*                                            /                                    301
+/wp-login.php                                          /                                    301
+/xmlrpc.php                                            /                                    410
+/wp-json/*                                             /                                    410
+/feed/                                                 https://medium.com/metacurrency-project/feed  301
+/comments/feed/                                        /                                    410
