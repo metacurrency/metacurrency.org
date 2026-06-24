@@ -10,3 +10,10 @@ manual/
 old_site/
 migration/
 scripts/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
