@@ -1,0 +1,11 @@
+{
+  "name": "metacurrency-web",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "./_site"
+  },
+  "routes": [
+    { "pattern": "metacurrency.org", "custom_domain": true },
+    { "pattern": "www.metacurrency.org", "custom_domain": true }
+  ]
+}
