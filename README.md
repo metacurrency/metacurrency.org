@@ -32,15 +32,22 @@ npm run build        # writes static site to _site/
 `npm run clean` removes `_site/`. Build is fully static — no runtime JS or
 server needed.
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers)
+
+Deployed as a **Workers** service (`metacurrency-web`) using Static Assets.
+`wrangler.jsonc` declares `assets.directory = "./_site"`, so the build output
+is served directly — there is no Worker script.
 
 1. Push the repo to GitHub.
-2. In Cloudflare Pages, create a project from the repo with:
+2. The connected Workers build (Workers & Pages → `metacurrency-web` → Settings
+   → Build) runs:
    - **Build command:** `npm run build`
-   - **Build output directory:** `_site`
+   - **Deploy command:** `npx wrangler deploy` (default)
    - **Node version:** 20 or newer
-3. The `_redirects` file is copied into the build output and is honored
-   automatically by Cloudflare Pages.
+3. The `_redirects` file is part of `_site/` and is honored automatically by
+   Workers Static Assets.
+
+CLI deploy (after `npm run build`): `npx wrangler deploy`.
 
 GitHub Pages also works (via `actions/deploy-pages` pointing at `_site/`),
 but `_redirects` is Cloudflare-specific — on GitHub Pages, legacy URLs would
